@@ -33,7 +33,7 @@
 
 #include <xc.h>
 #include <stdint.h>
-
+#include <stdio.h>
 #define  LCD PORTB
 #define  RS  RC4
 #define  RW  RC5
@@ -46,7 +46,10 @@ void lcd_msg(unsigned char *c);
 void lcd_ready();
 void lcd_lat();
 void lcd_init();
-char voltaje;
+void voltaje1 (void);
+float voltaje;
+int adc;
+unsigned char buffer[16];
 
 
 void main(void) {
@@ -65,39 +68,20 @@ void main(void) {
     PORTD = 0;
     PORTE = 0;
     
-    ADCON0bits.ADCS0 = 1;
-    ADCON0bits.ADCS1 = 0;
-    ADCON0bits.CHS0 = 1;
-    ADCON0bits.CHS1 = 0;
-    ADCON0bits.CHS2 = 1;
-    ADCON0bits.CHS3 = 1;
-    ADCON0bits.ADON = 1;   // adc on
-    ADCON1bits.ADFM = 1;
-    ADCON1bits.VCFG0 = 0;
-    ADCON1bits.VCFG1 = 0;
-    
     OSCCONbits.IRCF = 0b110; //4Mhz
     OSCCONbits.OSTS= 0;
     OSCCONbits.HTS = 0;
     OSCCONbits.LTS = 0;
     OSCCONbits.SCS = 1;
-    
-    
-    while(1)
-    {
+   
+    while(1){
        lcd_init();
-       lcd_msg("HELLO");
-       lcd_cmd(0xC0);
-       lcd_msg(voltaje);
+       voltaje1();
        while(1){
-           lcd_cmd(0x1C);
-           __delay_ms(250);
+           lcd_cmd(0x00);
+           __delay_ms(100);
        }
-         __delay_ms(1);
-        if (ADCON0bits.GO_DONE == 0){
-        ADCON0bits.GO_DONE = 1;
-        }
-         voltaje = ADRESL;
+       return;
     }
 }
 
@@ -150,4 +134,31 @@ void lcd_init(void){
     lcd_cmd(0x01);
     lcd_cmd(0x06);
     lcd_cmd(0x80);  
+}
+void voltaje1 (void){
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADCS1 = 0;
+    ADCON0bits.CHS0 = 0;
+    ADCON0bits.CHS1 = 0;
+    ADCON0bits.CHS2 = 0;
+    ADCON0bits.CHS3 = 0;
+    ADCON0bits.ADON = 1;   // adc on
+    ADCON1bits.ADFM = 1;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
+    while (1){
+        __delay_ms(1);
+        if (ADCON0bits.GO_DONE == 0){
+        ADCON0bits.GO_DONE = 1;
+        adc = ADRESH;
+        adc = adc<<8;
+        adc = adc + ADRESL;
+        voltaje = adc*5.0/1024.0;
+        lcd_msg("HELLO");
+        lcd_cmd(0xC0);
+        sprintf(buffer, "ADC %04.2f", voltaje);
+        lcd_msg(buffer);
+    }
+    }
+    return;
 }

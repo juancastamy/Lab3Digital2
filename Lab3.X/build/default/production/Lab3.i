@@ -2648,6 +2648,104 @@ typedef int16_t intptr_t;
 typedef uint16_t uintptr_t;
 # 35 "Lab3.c" 2
 
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 1 3
+
+
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\__size_t.h" 1 3
+
+
+
+typedef unsigned size_t;
+# 4 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 2 3
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\__null.h" 1 3
+# 5 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+
+
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdarg.h" 1 3
+
+
+
+
+
+
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+# 11 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 2 3
+# 43 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 3
+struct __prbuf
+{
+ char * ptr;
+ void (* func)(char);
+};
+# 85 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 3
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\conio.h" 1 3
+
+
+
+
+
+
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\errno.h" 1 3
+# 29 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\errno.h" 3
+extern int errno;
+# 8 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\conio.h" 2 3
+
+
+
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+
+
+extern char * cgets(char *);
+extern void cputs(const char *);
+# 85 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 2 3
+
+
+
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+# 180 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 3
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+# 36 "Lab3.c" 2
 
 
 
@@ -2661,7 +2759,10 @@ void lcd_msg(unsigned char *c);
 void lcd_ready();
 void lcd_lat();
 void lcd_init();
-char voltaje;
+void voltaje1 (void);
+float voltaje;
+int adc;
+unsigned char buffer[16];
 
 
 void main(void) {
@@ -2680,39 +2781,20 @@ void main(void) {
     PORTD = 0;
     PORTE = 0;
 
-    ADCON0bits.ADCS0 = 1;
-    ADCON0bits.ADCS1 = 0;
-    ADCON0bits.CHS0 = 1;
-    ADCON0bits.CHS1 = 0;
-    ADCON0bits.CHS2 = 1;
-    ADCON0bits.CHS3 = 1;
-    ADCON0bits.ADON = 1;
-    ADCON1bits.ADFM = 1;
-    ADCON1bits.VCFG0 = 0;
-    ADCON1bits.VCFG1 = 0;
-
     OSCCONbits.IRCF = 0b110;
     OSCCONbits.OSTS= 0;
     OSCCONbits.HTS = 0;
     OSCCONbits.LTS = 0;
     OSCCONbits.SCS = 1;
 
-
-    while(1)
-    {
+    while(1){
        lcd_init();
-       lcd_msg("HELLO");
-       lcd_cmd(0xC0);
-       lcd_msg(voltaje);
+       voltaje1();
        while(1){
-           lcd_cmd(0x1C);
-           _delay((unsigned long)((250)*(4000000/4000.0)));
+           lcd_cmd(0x00);
+           _delay((unsigned long)((100)*(4000000/4000.0)));
        }
-         _delay((unsigned long)((1)*(4000000/4000.0)));
-        if (ADCON0bits.GO_DONE == 0){
-        ADCON0bits.GO_DONE = 1;
-        }
-         voltaje = ADRESL;
+       return;
     }
 }
 
@@ -2765,4 +2847,31 @@ void lcd_init(void){
     lcd_cmd(0x01);
     lcd_cmd(0x06);
     lcd_cmd(0x80);
+}
+void voltaje1 (void){
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADCS1 = 0;
+    ADCON0bits.CHS0 = 0;
+    ADCON0bits.CHS1 = 0;
+    ADCON0bits.CHS2 = 0;
+    ADCON0bits.CHS3 = 0;
+    ADCON0bits.ADON = 1;
+    ADCON1bits.ADFM = 1;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
+    while (1){
+        _delay((unsigned long)((1)*(4000000/4000.0)));
+        if (ADCON0bits.GO_DONE == 0){
+        ADCON0bits.GO_DONE = 1;
+        adc = ADRESH;
+        adc = adc<<8;
+        adc = adc + ADRESL;
+        voltaje = adc*5.0/1024.0;
+        lcd_msg("HELLO");
+        lcd_cmd(0xC0);
+        sprintf(buffer, "ADC %04.2f", voltaje);
+        lcd_msg(buffer);
+    }
+    }
+    return;
 }
