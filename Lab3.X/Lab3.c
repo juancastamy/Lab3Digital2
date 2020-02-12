@@ -49,7 +49,10 @@ void lcd_init();
 void voltaje1 (void);
 float voltaje;
 int adc;
-unsigned char buffer[16];
+signed char buffer[16];
+float voltaje3;
+int adc2;
+unsigned char buffer_dos[16];
 
 
 void main(void) {
@@ -76,7 +79,7 @@ void main(void) {
    
     while(1){
        lcd_init();
-       voltaje1();
+       voltaje1();      
        while(1){
            lcd_cmd(0x00);
            __delay_ms(100);
@@ -85,78 +88,41 @@ void main(void) {
     }
 }
 
-void lcd_cmd(unsigned char x){
-    lcd_ready();
-    LCD = x;
-    RS = 0;
-    RW = 0;
-    lcd_lat();    
-}
 
-void lcd_lat(){
-    EN = 1;
-   __delay_ms(30);
-   EN = 0;
-}
-void lcd_ready(void) {
-    LCD = 0xFF;
-    LCD &= 0x80;
-    RS = 0;
-    RW = 1;
-    EN = 0;
-    __delay_ms(30);
-    EN = 1;
-    if (LCD == 0x80){
-    EN = 0;
-    __delay_ms(30);
-    EN = 1;  
-    }
-    else{   
-    }    
-}
-
-void lcd_dwr(unsigned char x){
-    lcd_ready();
-    LCD = x;
-    RS = 1;
-    RW = 0;
-    lcd_lat(); 
-}
-
-void lcd_msg(unsigned char *c){
-    while(*c != 0)
-        lcd_dwr(*c++);
-}
-
-void lcd_init(void){   
-    lcd_cmd(0x38);
-    lcd_cmd(0x0C);
-    lcd_cmd(0x01);
-    lcd_cmd(0x06);
-    lcd_cmd(0x80);  
-}
 void voltaje1 (void){
+    while(1){
     ADCON0bits.ADCS0 = 1;
     ADCON0bits.ADCS1 = 0;
-    ADCON0bits.CHS0 = 0;
-    ADCON0bits.CHS1 = 0;
-    ADCON0bits.CHS2 = 0;
-    ADCON0bits.CHS3 = 0;
     ADCON0bits.ADON = 1;   // adc on
-    ADCON1bits.ADFM = 1;
+    ADCON1bits.ADFM = 0;
     ADCON1bits.VCFG0 = 0;
     ADCON1bits.VCFG1 = 0;
-    while (1){
+    lcd_msg("S1    S2   cont.");
+    while(1){
         __delay_ms(1);
-        if (ADCON0bits.GO_DONE == 0){
-        ADCON0bits.GO_DONE = 1;
+        ADCON0bits.CHS0 = 0;
+        ADCON0bits.CHS1 = 0;
+        ADCON0bits.CHS2 = 0;
+        ADCON0bits.CHS3 = 0;
+        ADCON0bits.ADON = 1;
+        ADCON0bits.GO = 1;
+        PIR1bits.ADIF = 0;
         adc = ADRESH;
-        adc = adc<<8;
-        adc = adc + ADRESL;
-        voltaje = adc*5.0/1024.0;
-        lcd_msg("HELLO");
-        lcd_cmd(0xC0);
-        sprintf(buffer, "ADC %04.2f", voltaje);
+        voltaje = adc*5.0/255.0;
+        
+        __delay_us(600);
+        ADCON0bits.CHS0 = 1;
+        ADCON0bits.CHS1 = 1;
+        ADCON0bits.CHS2 = 0;
+        ADCON0bits.CHS3 = 0;
+        ADCON0bits.ADON = 1;   // adc on
+        ADCON0bits.GO = 1;
+        PIR1bits.ADIF = 0;
+        adc2 = ADRESH;
+        voltaje3 = adc2*5.0/255.0;
+
+        lcd_cmd(0xC0); 
+        sprintf(buffer, "%04.2f %04.2f", voltaje, voltaje3);
         lcd_msg(buffer);
     }
     }
