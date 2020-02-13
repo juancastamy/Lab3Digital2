@@ -1,4 +1,4 @@
-# 1 "Lab3.c"
+# 1 "ADC.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,27 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "Lab3.c" 2
-# 16 "Lab3.c"
-#pragma config FOSC = INTRC_NOCLKOUT
-#pragma config WDTE = OFF
-#pragma config PWRTE = OFF
-#pragma config MCLRE = OFF
-#pragma config CP = OFF
-#pragma config CPD = OFF
-#pragma config BOREN = OFF
-#pragma config IESO = OFF
-#pragma config FCMEN = OFF
-#pragma config LVP = OFF
-
-
-#pragma config BOR4V = BOR40V
-#pragma config WRT = OFF
-
-
-
-
-
+# 1 "ADC.c" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2511,7 +2491,17 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 34 "Lab3.c" 2
+# 1 "ADC.c" 2
+
+# 1 "./LCD.h" 1
+# 55 "./LCD.h"
+void lcd_cmd(unsigned char x);
+void lcd_dwr(unsigned char x);
+void lcd_msg(unsigned char *c);
+void lcd_ready(void);
+void lcd_lat(void);
+void lcd_init(void);
+# 2 "ADC.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
@@ -2646,22 +2636,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 35 "Lab3.c" 2
-
-# 1 "./LCD.h" 1
-# 55 "./LCD.h"
-void lcd_cmd(unsigned char x);
-void lcd_dwr(unsigned char x);
-void lcd_msg(unsigned char *c);
-void lcd_ready(void);
-void lcd_lat(void);
-void lcd_init(void);
-# 36 "Lab3.c" 2
-
-# 1 "./ADC.h" 1
-# 36 "./ADC.h"
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
-# 36 "./ADC.h" 2
+# 3 "ADC.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2760,7 +2735,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 37 "./ADC.h" 2
+# 4 "ADC.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2845,7 +2820,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 38 "./ADC.h" 2
+# 5 "ADC.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\string.h" 1 3
 # 14 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\string.h" 3
@@ -2878,44 +2853,90 @@ extern char * strchr(const char *, int);
 extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
-# 39 "./ADC.h" 2
+# 6 "ADC.c" 2
 
 
 
-void voltaje1 (void);
-# 37 "Lab3.c" 2
-# 47 "Lab3.c"
-void main(void) {
 
-    ANSEL = 0b00001001;
-    ANSELH= 0b00000000;
-    TRISA = 0b00001001;
-    TRISB = 0b00000000;
-    TRISC = 0b00000000;
-    TRISD = 0b00000000;
-    TRISE = 0;
-
-    PORTA = 0;
-    PORTB = 0;
-    PORTC = 0;
-    PORTD = 0;
-    PORTE = 0;
-
-    OSCCONbits.IRCF = 0b110;
-    OSCCONbits.OSTS= 0;
-    OSCCONbits.HTS = 0;
-    OSCCONbits.LTS = 0;
-    OSCCONbits.SCS = 1;
-
+float voltaje;
+int V1;
+int POT1A;
+int POT1B;
+int POT1C;
+char POT1SA[5];
+char POT1SB[5];
+char POT1SC[5];
+char PUNTO1[5];
+uint8_t adc;
+float voltaje3;
+uint8_t adc2;
+int V2;
+int POT2A;
+int POT2B;
+int POT2C;
+char POT2SA[5];
+char POT2SB[5];
+char POT2SC[5];
+char PUNTO2[5];
+void voltaje1 (void){
     while(1){
-       lcd_init();
-       voltaje1();
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADCS1 = 0;
+    ADCON0bits.ADON = 1;
+    ADCON1bits.ADFM = 0;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
+    lcd_msg("S1    S2   cont.");
+    while(1){
+        _delay((unsigned long)((1)*(4000000/4000.0)));
+        ADCON0bits.CHS0 = 0;
+        ADCON0bits.CHS1 = 0;
+        ADCON0bits.CHS2 = 0;
+        ADCON0bits.CHS3 = 0;
+        ADCON0bits.ADON = 1;
+        ADCON0bits.GO = 1;
+        PIR1bits.ADIF = 0;
+        adc = ADRESH;
+        voltaje = (adc*5.0)/255.0;
+        V1 = (voltaje)*100;
+        POT1A = V1%10;
+        itoa(POT1SA,POT1A,10);
+        POT1B = (V1/10)%10;
+        itoa(POT1SB,POT1B,10);
+        POT1C = (V1/100)%10;
+        itoa(POT1SC,POT1C,10);
+        strcat(POT1SB,POT1SA);
+        strcpy(PUNTO1,".");
+        strcat(PUNTO1,POT1SB);
+        strcat(POT1SC,PUNTO1);
 
+        _delay((unsigned long)((600)*(4000000/4000000.0)));
+        ADCON0bits.CHS0 = 1;
+        ADCON0bits.CHS1 = 1;
+        ADCON0bits.CHS2 = 0;
+        ADCON0bits.CHS3 = 0;
+        ADCON0bits.ADON = 1;
+        ADCON0bits.GO = 1;
+        PIR1bits.ADIF = 0;
+        adc2 = ADRESH;
+        voltaje3 = adc2*5.0/255.0;
+        V2 = (voltaje3)*100;
+        POT2A = V2%10;
+        itoa(POT2SA,POT2A,10);
+        POT2B = (V2/10)%10;
+        itoa(POT2SB,POT2B,10);
+        POT2C = (V2/100)%10;
+        itoa(POT2SC,POT2C,10);
+        strcat(POT2SB,POT2SA);
+        strcpy(PUNTO2,".");
+        strcat(PUNTO2,POT2SB);
+        strcat(POT2SC,PUNTO2);
 
-       while(1){
-           lcd_cmd(0x00);
-           _delay((unsigned long)((100)*(4000000/4000.0)));
-       }
-       return;
+        strcat(POT2SC, " ");
+        strcat(POT1SC, POT2SC);
+        lcd_cmd(0xC0);
+        lcd_msg(POT1SC);
     }
+    }
+    return;
 }

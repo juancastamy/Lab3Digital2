@@ -28,36 +28,19 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef __LCD_H
-#define	__LCD_H
+#ifndef __ADC_H
+#define	__ADC_H
 
-#ifndef __XTAL_FREQ
-#define __XLAT_FREQ 4000000
-#endif
+#include <xc.h>
+#include "LCD.h"
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+// include processor files - each processor file is guarded.  
+#define _XTAL_FREQ 4000000
+void voltaje1 (void);
 
-#ifndef LCD
-#define  LCD PORTB
-#endif
-
-#ifndef RS
-#define  RS  RD7
-#endif
-
-#ifndef RW
-#define  RW  RD2
-#endif
-
-#ifndef EN
-#define  EN  RD3
-#endif
-
-#include <xc.h> // include processor files - each processor file is guarded.  
-void lcd_cmd(unsigned char x);
-void lcd_dwr(unsigned char x);
-void lcd_msg(unsigned char *c);
-void lcd_ready(void);
-void lcd_lat(void);
-void lcd_init(void);
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 

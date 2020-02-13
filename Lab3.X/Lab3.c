@@ -33,28 +33,17 @@
 
 #include <xc.h>
 #include <stdint.h>
+#include "LCD.h"
+#include "ADC.h"
 #include <stdio.h>
-#define  LCD PORTB
-#define  RS  RC4
-#define  RW  RC5
-#define  EN  RC6
-#define _XTAL_FREQ  4000000
+#include <stdlib.h>
+#include <string.h>
 /*inicializacion de LCD obtenida de https://www.youtube.com/watch?v=ve1PcD6Cegw&feature=youtu.be*/
-void lcd_cmd(unsigned char x);
-void lcd_dwr(unsigned char x);
-void lcd_msg(unsigned char *c);
-void lcd_ready();
-void lcd_lat();
-void lcd_init();
-void voltaje1 (void);
-float voltaje;
-int adc;
-signed char buffer[16];
-float voltaje3;
-int adc2;
-unsigned char buffer_dos[16];
-
-
+/*void SERIAL_INT(void);
+uint8_t SERIAL_READ(void);
+void SERIAL_READTX(char *output, unsigned int length);
+void SERIAL_WRITE(char data);
+void SERIAL_WRITETX(char* tx);*/
 void main(void) {
       //entradas, salidas, entradas digitales o analogicas
     ANSEL = 0b00001001;
@@ -75,11 +64,13 @@ void main(void) {
     OSCCONbits.OSTS= 0;
     OSCCONbits.HTS = 0;
     OSCCONbits.LTS = 0;
-    OSCCONbits.SCS = 1;
-   
+    OSCCONbits.SCS = 1;  
+    
     while(1){
        lcd_init();
-       voltaje1();      
+       voltaje1();
+       //SERIAL_INT(); 
+       //SERIAL_READ();
        while(1){
            lcd_cmd(0x00);
            __delay_ms(100);
@@ -88,43 +79,37 @@ void main(void) {
     }
 }
 
-
-void voltaje1 (void){
-    while(1){
-    ADCON0bits.ADCS0 = 1;
-    ADCON0bits.ADCS1 = 0;
-    ADCON0bits.ADON = 1;   // adc on
-    ADCON1bits.ADFM = 0;
-    ADCON1bits.VCFG0 = 0;
-    ADCON1bits.VCFG1 = 0;
-    lcd_msg("S1    S2   cont.");
-    while(1){
-        __delay_ms(1);
-        ADCON0bits.CHS0 = 0;
-        ADCON0bits.CHS1 = 0;
-        ADCON0bits.CHS2 = 0;
-        ADCON0bits.CHS3 = 0;
-        ADCON0bits.ADON = 1;
-        ADCON0bits.GO = 1;
-        PIR1bits.ADIF = 0;
-        adc = ADRESH;
-        voltaje = adc*5.0/255.0;
-        
-        __delay_us(600);
-        ADCON0bits.CHS0 = 1;
-        ADCON0bits.CHS1 = 1;
-        ADCON0bits.CHS2 = 0;
-        ADCON0bits.CHS3 = 0;
-        ADCON0bits.ADON = 1;   // adc on
-        ADCON0bits.GO = 1;
-        PIR1bits.ADIF = 0;
-        adc2 = ADRESH;
-        voltaje3 = adc2*5.0/255.0;
-
-        lcd_cmd(0xC0); 
-        sprintf(buffer, "%04.2f %04.2f", voltaje, voltaje3);
-        lcd_msg(buffer);
-    }
-    }
-    return;
+/*void SERIAL_INT(void){
+    SPBRG = 25;
+    // EL QUE TX
+    TXSTAbits.BRGH = 1;
+    TXSTAbits.TXEN = 1;
+    TXSTAbits.SYNC = 0;
+    TXSTAbits.TX9 = 0;
+    //RX
+    RCSTAbits.CREN = 1;
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.RX9 = 0;
 }
+uint8_t SERIAL_READ(void){
+    if(PIR1bits.RCIF == 1){
+        return RCREG;
+    }
+}
+void SERIAL_READTX(char *output, unsigned int length){
+    unsigned int x;
+    for(int x=0; x<length; x++){
+        output[x] = SERIAL_READ();
+    }
+}
+void SERIAL_WRITE(char data){
+    while(TXSTAbits.TRMT !=1){
+        TXREG = data;
+    }
+}
+void SERIAL_WRITETX(char* tx){
+    int y;
+    for(y=0;tx[y]!='\0';y++){
+        SERIAL_WRITE(tx[y]);
+    }
+}*/

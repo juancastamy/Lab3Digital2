@@ -1,5 +1,6 @@
 #include<xc.h>
 #include "LCD.h"
+#define _XTAL_FREQ 4000000
 
 void lcd_cmd(unsigned char x){
     lcd_ready();
@@ -9,7 +10,7 @@ void lcd_cmd(unsigned char x){
     lcd_lat();    
 }
 
-void lcd_lat(){
+void lcd_lat(void){
     EN = 1;
    __delay_ms(30);
    EN = 0;
