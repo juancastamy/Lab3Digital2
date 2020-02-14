@@ -28,20 +28,15 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef __ADC_H
-#define	__ADC_H
+#ifndef __UART_H
+#define	__UART_H
 
 #include <xc.h>
-#include "LCD.h"
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-// include processor files - each processor file is guarded.  
-#define _XTAL_FREQ 4000000
-void voltaje1 (void);
-void CONTADOR (int n);
-
+#include <stdint.h>// include processor files - each processor file is guarded.  
+void SERIAL_INT(void);
+uint8_t UART_READ();
+uint8_t UART_TX_Empty();
+void UART_Write(uint8_t contador);
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 

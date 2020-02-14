@@ -1,6 +1,17 @@
 Version 4.0 HI-TECH Software Intermediate Code
+[t ~ __interrupt . k ]
+[t T1 __interrupt ]
+"4175 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 4175: extern volatile __bit RCIF __attribute__((address(0x65)));
+[v _RCIF `Vb ~T0 @X0 0 e@101 ]
+"43 ./ADC.h
+[; ;./ADC.h: 43: void CONTADOR (int n);
+[v _CONTADOR `(v ~T0 @X0 0 ef1`i ]
+"1140 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
+[v _RCREG `Vuc ~T0 @X0 0 e@26 ]
 [p mainexit ]
-"3387 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+"3387
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
 [v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
 "3449
@@ -12,9 +23,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1478
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1478: extern volatile unsigned char TRISB __attribute__((address(0x086)));
 [v _TRISB `Vuc ~T0 @X0 0 e@134 ]
-"1540
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1540: extern volatile unsigned char TRISC __attribute__((address(0x087)));
-[v _TRISC `Vuc ~T0 @X0 0 e@135 ]
 "1602
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1602: extern volatile unsigned char TRISD __attribute__((address(0x088)));
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
@@ -54,16 +62,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "60 ./LCD.h
 [; ;./LCD.h: 60: void lcd_init(void);
 [v _lcd_init `(v ~T0 @X0 0 ef ]
+"36 ./UART.h
+[; ;./UART.h: 36: void SERIAL_INT(void);
+[v _SERIAL_INT `(v ~T0 @X0 0 ef ]
 "42 ./ADC.h
 [; ;./ADC.h: 42: void voltaje1 (void);
 [v _voltaje1 `(v ~T0 @X0 0 ef ]
-"55 ./LCD.h
-[; ;./LCD.h: 55: void lcd_cmd(unsigned char x);
-[v _lcd_cmd `(v ~T0 @X0 0 ef1`uc ]
-[v F1256 `(v ~T0 @X0 1 tf1`ul ]
-"92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
-[v __delay `JF1256 ~T0 @X0 0 e ]
-[p i __delay ]
 "16 Lab3.c
 [p x FOSC = INTRC_NOCLKOUT ]
 "17
@@ -322,100 +326,106 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
+[v $root$_ISR `(v ~T0 @X0 0 e ]
+"45 Lab3.c
+[; ;Lab3.c: 45: void __attribute__((picinterrupt(("")))) ISR(void){
+[v _ISR `(v ~T1 @X0 1 ef ]
+{
+[e :U _ISR ]
+[f ]
+"46
+[; ;Lab3.c: 46:     if (RCIF==1){
+[e $ ! == -> _RCIF `i -> 1 `i 144  ]
+{
+"47
+[; ;Lab3.c: 47:         CONTADOR ((int)RCREG);
+[e ( _CONTADOR (1 -> _RCREG `i ]
+"49
+[; ;Lab3.c: 49:         RCIF=0;
+[e = _RCIF -> -> 0 `i `b ]
+"50
+[; ;Lab3.c: 50:     }
+}
+[e :U 144 ]
+"51
+[; ;Lab3.c: 51: }
+[e :UE 143 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"47 Lab3.c
-[; ;Lab3.c: 47: void main(void) {
+"52
+[; ;Lab3.c: 52: void main(void){
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"49
-[; ;Lab3.c: 49:     ANSEL = 0b00001001;
-[e = _ANSEL -> -> 9 `i `uc ]
-"50
-[; ;Lab3.c: 50:     ANSELH= 0b00000000;
-[e = _ANSELH -> -> 0 `i `uc ]
-"51
-[; ;Lab3.c: 51:     TRISA = 0b00001001;
-[e = _TRISA -> -> 9 `i `uc ]
-"52
-[; ;Lab3.c: 52:     TRISB = 0b00000000;
-[e = _TRISB -> -> 0 `i `uc ]
-"53
-[; ;Lab3.c: 53:     TRISC = 0b00000000;
-[e = _TRISC -> -> 0 `i `uc ]
 "54
-[; ;Lab3.c: 54:     TRISD = 0b00000000;
-[e = _TRISD -> -> 0 `i `uc ]
+[; ;Lab3.c: 54:     ANSEL = 0b00001001;
+[e = _ANSEL -> -> 9 `i `uc ]
 "55
-[; ;Lab3.c: 55:     TRISE = 0;
-[e = _TRISE -> -> 0 `i `uc ]
+[; ;Lab3.c: 55:     ANSELH= 0b00000000;
+[e = _ANSELH -> -> 0 `i `uc ]
+"56
+[; ;Lab3.c: 56:     TRISA = 0b00001001;
+[e = _TRISA -> -> 9 `i `uc ]
 "57
-[; ;Lab3.c: 57:     PORTA = 0;
-[e = _PORTA -> -> 0 `i `uc ]
+[; ;Lab3.c: 57:     TRISB = 0b00000000;
+[e = _TRISB -> -> 0 `i `uc ]
 "58
-[; ;Lab3.c: 58:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;Lab3.c: 58:     TRISD = 0b00000000;
+[e = _TRISD -> -> 0 `i `uc ]
 "59
-[; ;Lab3.c: 59:     PORTC = 0;
-[e = _PORTC -> -> 0 `i `uc ]
-"60
-[; ;Lab3.c: 60:     PORTD = 0;
-[e = _PORTD -> -> 0 `i `uc ]
+[; ;Lab3.c: 59:     TRISE = 0;
+[e = _TRISE -> -> 0 `i `uc ]
 "61
-[; ;Lab3.c: 61:     PORTE = 0;
-[e = _PORTE -> -> 0 `i `uc ]
+[; ;Lab3.c: 61:     PORTA = 0;
+[e = _PORTA -> -> 0 `i `uc ]
+"62
+[; ;Lab3.c: 62:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
 "63
-[; ;Lab3.c: 63:     OSCCONbits.IRCF = 0b110;
-[e = . . _OSCCONbits 0 4 -> -> 6 `i `uc ]
+[; ;Lab3.c: 63:     PORTC = 0;
+[e = _PORTC -> -> 0 `i `uc ]
 "64
-[; ;Lab3.c: 64:     OSCCONbits.OSTS= 0;
-[e = . . _OSCCONbits 0 3 -> -> 0 `i `uc ]
+[; ;Lab3.c: 64:     PORTD = 0;
+[e = _PORTD -> -> 0 `i `uc ]
 "65
-[; ;Lab3.c: 65:     OSCCONbits.HTS = 0;
-[e = . . _OSCCONbits 0 2 -> -> 0 `i `uc ]
-"66
-[; ;Lab3.c: 66:     OSCCONbits.LTS = 0;
-[e = . . _OSCCONbits 0 1 -> -> 0 `i `uc ]
+[; ;Lab3.c: 65:     PORTE = 0;
+[e = _PORTE -> -> 0 `i `uc ]
 "67
-[; ;Lab3.c: 67:     OSCCONbits.SCS = 1;
-[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
+[; ;Lab3.c: 67:     OSCCONbits.IRCF = 0b110;
+[e = . . _OSCCONbits 0 4 -> -> 6 `i `uc ]
+"68
+[; ;Lab3.c: 68:     OSCCONbits.OSTS= 0;
+[e = . . _OSCCONbits 0 3 -> -> 0 `i `uc ]
 "69
-[; ;Lab3.c: 69:     while(1){
-[e :U 145 ]
-{
+[; ;Lab3.c: 69:     OSCCONbits.HTS = 0;
+[e = . . _OSCCONbits 0 2 -> -> 0 `i `uc ]
 "70
-[; ;Lab3.c: 70:        lcd_init();
-[e ( _lcd_init ..  ]
+[; ;Lab3.c: 70:     OSCCONbits.LTS = 0;
+[e = . . _OSCCONbits 0 1 -> -> 0 `i `uc ]
 "71
-[; ;Lab3.c: 71:        voltaje1();
-[e ( _voltaje1 ..  ]
-"74
-[; ;Lab3.c: 74:        while(1){
-[e :U 148 ]
-{
-"75
-[; ;Lab3.c: 75:            lcd_cmd(0x00);
-[e ( _lcd_cmd (1 -> -> 0 `i `uc ]
-"76
-[; ;Lab3.c: 76:            _delay((unsigned long)((100)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"77
-[; ;Lab3.c: 77:        }
-}
+[; ;Lab3.c: 71:     OSCCONbits.SCS = 1;
+[e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
+"73
+[; ;Lab3.c: 73:     while(1){
 [e :U 147 ]
-[e $U 148  ]
-[e :U 149 ]
+{
+"74
+[; ;Lab3.c: 74:         lcd_init();
+[e ( _lcd_init ..  ]
+"75
+[; ;Lab3.c: 75:         SERIAL_INT();
+[e ( _SERIAL_INT ..  ]
+"76
+[; ;Lab3.c: 76:        voltaje1();
+[e ( _voltaje1 ..  ]
 "78
-[; ;Lab3.c: 78:        return;
-[e $UE 143  ]
-"79
-[; ;Lab3.c: 79:     }
+[; ;Lab3.c: 78:     }
 }
-[e :U 144 ]
-[e $U 145  ]
 [e :U 146 ]
-"80
-[; ;Lab3.c: 80: }
-[e :UE 143 ]
+[e $U 147  ]
+[e :U 148 ]
+"79
+[; ;Lab3.c: 79: }
+[e :UE 145 ]
 }

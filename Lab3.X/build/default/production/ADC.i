@@ -2503,6 +2503,8 @@ void lcd_lat(void);
 void lcd_init(void);
 # 2 "ADC.c" 2
 
+# 1 "./UART.h" 1
+# 35 "./UART.h"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
 typedef signed char int8_t;
@@ -2636,7 +2638,16 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
+# 35 "./UART.h" 2
+
+void SERIAL_INT(void);
+uint8_t UART_READ();
+uint8_t UART_TX_Empty();
+void UART_Write(uint8_t contador);
 # 3 "ADC.c" 2
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
+# 4 "ADC.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2735,7 +2746,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 4 "ADC.c" 2
+# 5 "ADC.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2820,7 +2831,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 5 "ADC.c" 2
+# 6 "ADC.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\string.h" 1 3
 # 14 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\string.h" 3
@@ -2853,7 +2864,7 @@ extern char * strchr(const char *, int);
 extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
-# 6 "ADC.c" 2
+# 7 "ADC.c" 2
 
 
 
@@ -2878,6 +2889,15 @@ char POT2SA[5];
 char POT2SB[5];
 char POT2SC[5];
 char PUNTO2[5];
+char Contador;
+int O;
+int Destination;
+char DESTINATION[5];
+void CONTADOR (int n){
+    Destination = n;
+    O = (Destination)*1;
+     itoa(DESTINATION,O,10);
+}
 void voltaje1 (void){
     while(1){
     ADCON0bits.ADCS0 = 1;
@@ -2932,10 +2952,13 @@ void voltaje1 (void){
         strcat(PUNTO2,POT2SB);
         strcat(POT2SC,PUNTO2);
 
-        strcat(POT2SC, " ");
-        strcat(POT1SC, POT2SC);
         lcd_cmd(0xC0);
         lcd_msg(POT1SC);
+        lcd_msg(" ");
+        lcd_msg(POT2SC);
+        lcd_msg(" ");
+        lcd_msg(DESTINATION);
+
     }
     }
     return;

@@ -1,5 +1,6 @@
 #include <xc.h>
 #include "LCD.h"
+#include "UART.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,6 +28,15 @@ char POT2SA[5];
 char POT2SB[5];
 char POT2SC[5];
 char PUNTO2[5];
+char Contador;
+int O;
+int Destination;
+char DESTINATION[5];
+void CONTADOR (int  n){
+    Destination = n;
+    O = (Destination)*1;
+     itoa(DESTINATION,O,10);
+}
 void voltaje1 (void){
     while(1){
     ADCON0bits.ADCS0 = 1;
@@ -81,10 +91,13 @@ void voltaje1 (void){
         strcat(PUNTO2,POT2SB);
         strcat(POT2SC,PUNTO2);
         
-        strcat(POT2SC, " ");
-        strcat(POT1SC, POT2SC);
         lcd_cmd(0xC0); 
         lcd_msg(POT1SC);
+        lcd_msg(" ");
+        lcd_msg(POT2SC);
+        lcd_msg(" ");
+        lcd_msg(DESTINATION);
+       
     }
     }
     return;

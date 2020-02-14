@@ -1,71 +1,87 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"113 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\stdlib.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\stdlib.h: 113: extern char * itoa(char * buf, int val, int base);
-[v _itoa `(*uc ~T0 @X0 0 ef3`*uc`i`i ]
-"1251 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1251:     struct {
-[s S45 :1 `uc 1 :1 `uc 1 :4 `uc 1 :2 `uc 1 ]
-[n S45 . ADON GO_nDONE CHS ADCS ]
-"1257
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1257:     struct {
-[s S46 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S46 . . GO CHS0 CHS1 CHS2 CHS3 ADCS0 ADCS1 ]
-"1267
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1267:     struct {
-[s S47 :1 `uc 1 :1 `uc 1 ]
-[n S47 . . nDONE ]
-"1271
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1271:     struct {
-[s S48 :1 `uc 1 :1 `uc 1 ]
-[n S48 . . GO_DONE ]
-"1250
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1250: typedef union {
-[u S44 `S45 1 `S46 1 `S47 1 `S48 1 ]
-[n S44 . . . . . ]
-"1276
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1276: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x01F)));
-[v _ADCON0bits `VS44 ~T0 @X0 0 e@31 ]
-"2983
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 2983:     struct {
-[s S116 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S116 . . VCFG0 VCFG1 . ADFM ]
-"2982
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 2982: typedef union {
-[u S115 `S116 1 ]
-[n S115 . . ]
-"2991
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 2991: extern volatile ADCON1bits_t ADCON1bits __attribute__((address(0x09F)));
-[v _ADCON1bits `VS115 ~T0 @X0 0 e@159 ]
-"57 ./LCD.h
-[; ;./LCD.h: 57: void lcd_msg(unsigned char *c);
-[v _lcd_msg `(v ~T0 @X0 0 ef1`*uc ]
-[v F1256 `(v ~T0 @X0 1 tf1`ul ]
-"92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
-[v __delay `JF1256 ~T0 @X0 0 e ]
-[p i __delay ]
-"543 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 543:     struct {
-[s S19 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S19 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
-"542
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 542: typedef union {
-[u S18 `S19 1 ]
-[n S18 . . ]
-"553
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 553: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x00C)));
-[v _PIR1bits `VS18 ~T0 @X0 0 e@12 ]
-"1238
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1238: extern volatile unsigned char ADRESH __attribute__((address(0x01E)));
-[v _ADRESH `Vuc ~T0 @X0 0 e@30 ]
-"36 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\string.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\string.h: 36: extern char * strcat(char *, const char *);
-[v _strcat `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
-"37
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\c90\string.h: 37: extern char * strcpy(char *, const char *);
-[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
-"55 ./LCD.h
-[; ;./LCD.h: 55: void lcd_cmd(unsigned char x);
-[v _lcd_cmd `(v ~T0 @X0 0 ef1`uc ]
+"2642 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 2642: extern volatile unsigned char SPBRG __attribute__((address(0x099)));
+[v _SPBRG `Vuc ~T0 @X0 0 e@153 ]
+"2562
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 2562:     struct {
+[s S99 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S99 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
+"2572
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 2572:     struct {
+[s S100 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S100 . TXD8 . nTX8 ]
+"2577
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 2577:     struct {
+[s S101 :6 `uc 1 :1 `uc 1 ]
+[n S101 . . TX8_9 ]
+"2561
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 2561: typedef union {
+[u S98 `S99 1 `S100 1 `S101 1 ]
+[n S98 . . . . ]
+"2582
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 2582: extern volatile TXSTAbits_t TXSTAbits __attribute__((address(0x098)));
+[v _TXSTAbits `VS98 ~T0 @X0 0 e@152 ]
+"1044
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1044:     struct {
+[s S37 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S37 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
+"1054
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1054:     struct {
+[s S38 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S38 . RCD8 . RC9 ]
+"1059
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1059:     struct {
+[s S39 :6 `uc 1 :1 `uc 1 ]
+[n S39 . . nRC8 ]
+"1063
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1063:     struct {
+[s S40 :6 `uc 1 :1 `uc 1 ]
+[n S40 . . RC8_9 ]
+"1043
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1043: typedef union {
+[u S36 `S37 1 `S38 1 `S39 1 `S40 1 ]
+[n S36 . . . . . ]
+"1068
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1068: extern volatile RCSTAbits_t RCSTAbits __attribute__((address(0x018)));
+[v _RCSTAbits `VS36 ~T0 @X0 0 e@24 ]
+"1708
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1708:     struct {
+[s S63 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S63 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE ]
+"1707
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1707: typedef union {
+[u S62 `S63 1 ]
+[n S62 . . ]
+"1718
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1718: extern volatile PIE1bits_t PIE1bits __attribute__((address(0x08C)));
+[v _PIE1bits `VS62 ~T0 @X0 0 e@140 ]
+"465
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 465:     struct {
+[s S16 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S16 . RBIF INTF T0IF RBIE INTE T0IE PEIE GIE ]
+"475
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 475:     struct {
+[s S17 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S17 . . TMR0IF . TMR0IE ]
+"464
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 464: typedef union {
+[u S15 `S16 1 `S17 1 ]
+[n S15 . . . ]
+"482
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 482: extern volatile INTCONbits_t INTCONbits __attribute__((address(0x00B)));
+[v _INTCONbits `VS15 ~T0 @X0 0 e@11 ]
+"4508
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 4508: extern volatile __bit TRMT __attribute__((address(0x4C1)));
+[v _TRMT `Vb ~T0 @X0 0 e@1217 ]
+"1133
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1133: extern volatile unsigned char TXREG __attribute__((address(0x019)));
+[v _TXREG `Vuc ~T0 @X0 0 e@25 ]
+"4175
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 4175: extern volatile __bit RCIF __attribute__((address(0x65)));
+[v _RCIF `Vb ~T0 @X0 0 e@101 ]
+"1140
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
+[v _RCREG `Vuc ~T0 @X0 0 e@26 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -300,298 +316,102 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"11 ADC.c
-[; ;ADC.c: 11: float voltaje;
-[v _voltaje `f ~T0 @X0 1 e ]
-"12
-[; ;ADC.c: 12: int V1;
-[v _V1 `i ~T0 @X0 1 e ]
-"13
-[; ;ADC.c: 13: int POT1A;
-[v _POT1A `i ~T0 @X0 1 e ]
-"14
-[; ;ADC.c: 14: int POT1B;
-[v _POT1B `i ~T0 @X0 1 e ]
-"15
-[; ;ADC.c: 15: int POT1C;
-[v _POT1C `i ~T0 @X0 1 e ]
-"16
-[; ;ADC.c: 16: char POT1SA[5];
-[v _POT1SA `uc ~T0 @X0 -> 5 `i e ]
-"17
-[; ;ADC.c: 17: char POT1SB[5];
-[v _POT1SB `uc ~T0 @X0 -> 5 `i e ]
-"18
-[; ;ADC.c: 18: char POT1SC[5];
-[v _POT1SC `uc ~T0 @X0 -> 5 `i e ]
-"19
-[; ;ADC.c: 19: char PUNTO1[5];
-[v _PUNTO1 `uc ~T0 @X0 -> 5 `i e ]
-"20
-[; ;ADC.c: 20: uint8_t adc;
-[v _adc `uc ~T0 @X0 1 e ]
-"21
-[; ;ADC.c: 21: float voltaje3;
-[v _voltaje3 `f ~T0 @X0 1 e ]
-"22
-[; ;ADC.c: 22: uint8_t adc2;
-[v _adc2 `uc ~T0 @X0 1 e ]
-"23
-[; ;ADC.c: 23: int V2;
-[v _V2 `i ~T0 @X0 1 e ]
-"24
-[; ;ADC.c: 24: int POT2A;
-[v _POT2A `i ~T0 @X0 1 e ]
-"25
-[; ;ADC.c: 25: int POT2B;
-[v _POT2B `i ~T0 @X0 1 e ]
-"26
-[; ;ADC.c: 26: int POT2C;
-[v _POT2C `i ~T0 @X0 1 e ]
-"27
-[; ;ADC.c: 27: char POT2SA[5];
-[v _POT2SA `uc ~T0 @X0 -> 5 `i e ]
-"28
-[; ;ADC.c: 28: char POT2SB[5];
-[v _POT2SB `uc ~T0 @X0 -> 5 `i e ]
-"29
-[; ;ADC.c: 29: char POT2SC[5];
-[v _POT2SC `uc ~T0 @X0 -> 5 `i e ]
-"30
-[; ;ADC.c: 30: char PUNTO2[5];
-[v _PUNTO2 `uc ~T0 @X0 -> 5 `i e ]
-"31
-[; ;ADC.c: 31: char Contador;
-[v _Contador `uc ~T0 @X0 1 e ]
-"32
-[; ;ADC.c: 32: int O;
-[v _O `i ~T0 @X0 1 e ]
-"33
-[; ;ADC.c: 33: int Destination;
-[v _Destination `i ~T0 @X0 1 e ]
-"34
-[; ;ADC.c: 34: char DESTINATION[5];
-[v _DESTINATION `uc ~T0 @X0 -> 5 `i e ]
-"35
-[; ;ADC.c: 35: void CONTADOR (int n){
-[v _CONTADOR `(v ~T0 @X0 1 ef1`i ]
+"11 UART.c
+[; ;UART.c: 11: void SERIAL_INT(void){
+[v _SERIAL_INT `(v ~T0 @X0 1 ef ]
 {
-[e :U _CONTADOR ]
-[v _n `i ~T0 @X0 1 r1 ]
+[e :U _SERIAL_INT ]
 [f ]
-"36
-[; ;ADC.c: 36:     Destination = n;
-[e = _Destination _n ]
-"37
-[; ;ADC.c: 37:     O = (Destination)*1;
-[e = _O * _Destination -> 1 `i ]
-"38
-[; ;ADC.c: 38:      itoa(DESTINATION,O,10);
-[e ( _itoa (3 , , &U _DESTINATION _O -> 10 `i ]
-"39
-[; ;ADC.c: 39: }
+"12
+[; ;UART.c: 12:     SPBRG = 25;
+[e = _SPBRG -> -> 25 `i `uc ]
+"14
+[; ;UART.c: 14:     TXSTAbits.BRGH = 1;
+[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
+"15
+[; ;UART.c: 15:     TXSTAbits.TXEN = 1;
+[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
+"16
+[; ;UART.c: 16:     TXSTAbits.SYNC = 0;
+[e = . . _TXSTAbits 0 4 -> -> 0 `i `uc ]
+"17
+[; ;UART.c: 17:     TXSTAbits.TX9 = 0;
+[e = . . _TXSTAbits 0 6 -> -> 0 `i `uc ]
+"19
+[; ;UART.c: 19:     RCSTAbits.CREN = 1;
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+"20
+[; ;UART.c: 20:     RCSTAbits.SPEN = 1;
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+"21
+[; ;UART.c: 21:     RCSTAbits.RX9 = 0;
+[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
+"23
+[; ;UART.c: 23:     PIE1bits.RCIE = 1;
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+"24
+[; ;UART.c: 24:     INTCONbits.PEIE = 1;
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+"25
+[; ;UART.c: 25:     INTCONbits.GIE = 1;
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+"26
+[; ;UART.c: 26: }
 [e :UE 143 ]
 }
-"40
-[; ;ADC.c: 40: void voltaje1 (void){
-[v _voltaje1 `(v ~T0 @X0 1 ef ]
+"27
+[; ;UART.c: 27: void UART_Write(uint8_t contador){
+[v _UART_Write `(v ~T0 @X0 1 ef1`uc ]
 {
-[e :U _voltaje1 ]
+[e :U _UART_Write ]
+[v _contador `uc ~T0 @X0 1 r1 ]
 [f ]
-"41
-[; ;ADC.c: 41:     while(1){
+"28
+[; ;UART.c: 28:   while(!TRMT);
+[e $U 145  ]
 [e :U 146 ]
-{
-"42
-[; ;ADC.c: 42:     ADCON0bits.ADCS0 = 1;
-[e = . . _ADCON0bits 1 6 -> -> 1 `i `uc ]
-"43
-[; ;ADC.c: 43:     ADCON0bits.ADCS1 = 0;
-[e = . . _ADCON0bits 1 7 -> -> 0 `i `uc ]
-"44
-[; ;ADC.c: 44:     ADCON0bits.ADON = 1;
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"45
-[; ;ADC.c: 45:     ADCON1bits.ADFM = 0;
-[e = . . _ADCON1bits 0 4 -> -> 0 `i `uc ]
-"46
-[; ;ADC.c: 46:     ADCON1bits.VCFG0 = 0;
-[e = . . _ADCON1bits 0 1 -> -> 0 `i `uc ]
-"47
-[; ;ADC.c: 47:     ADCON1bits.VCFG1 = 0;
-[e = . . _ADCON1bits 0 2 -> -> 0 `i `uc ]
-"48
-[; ;ADC.c: 48:     lcd_msg("S1    S2   cont.");
-[e ( _lcd_msg (1 :s 1C ]
-"49
-[; ;ADC.c: 49:     while(1){
-[e :U 149 ]
-{
-"50
-[; ;ADC.c: 50:         _delay((unsigned long)((1)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"51
-[; ;ADC.c: 51:         ADCON0bits.CHS0 = 0;
-[e = . . _ADCON0bits 1 2 -> -> 0 `i `uc ]
-"52
-[; ;ADC.c: 52:         ADCON0bits.CHS1 = 0;
-[e = . . _ADCON0bits 1 3 -> -> 0 `i `uc ]
-"53
-[; ;ADC.c: 53:         ADCON0bits.CHS2 = 0;
-[e = . . _ADCON0bits 1 4 -> -> 0 `i `uc ]
-"54
-[; ;ADC.c: 54:         ADCON0bits.CHS3 = 0;
-[e = . . _ADCON0bits 1 5 -> -> 0 `i `uc ]
-"55
-[; ;ADC.c: 55:         ADCON0bits.ADON = 1;
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"56
-[; ;ADC.c: 56:         ADCON0bits.GO = 1;
-[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-"57
-[; ;ADC.c: 57:         PIR1bits.ADIF = 0;
-[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"58
-[; ;ADC.c: 58:         adc = ADRESH;
-[e = _adc _ADRESH ]
-"59
-[; ;ADC.c: 59:         voltaje = (adc*5.0)/255.0;
-[e = _voltaje -> / * -> -> _adc `i `d .5.0 .255.0 `f ]
-"60
-[; ;ADC.c: 60:         V1 = (voltaje)*100;
-[e = _V1 -> * _voltaje -> -> 100 `i `f `i ]
-"61
-[; ;ADC.c: 61:         POT1A = V1%10;
-[e = _POT1A % _V1 -> 10 `i ]
-"62
-[; ;ADC.c: 62:         itoa(POT1SA,POT1A,10);
-[e ( _itoa (3 , , &U _POT1SA _POT1A -> 10 `i ]
-"63
-[; ;ADC.c: 63:         POT1B = (V1/10)%10;
-[e = _POT1B % / _V1 -> 10 `i -> 10 `i ]
-"64
-[; ;ADC.c: 64:         itoa(POT1SB,POT1B,10);
-[e ( _itoa (3 , , &U _POT1SB _POT1B -> 10 `i ]
-"65
-[; ;ADC.c: 65:         POT1C = (V1/100)%10;
-[e = _POT1C % / _V1 -> 100 `i -> 10 `i ]
-"66
-[; ;ADC.c: 66:         itoa(POT1SC,POT1C,10);
-[e ( _itoa (3 , , &U _POT1SC _POT1C -> 10 `i ]
-"67
-[; ;ADC.c: 67:         strcat(POT1SB,POT1SA);
-[e ( _strcat (2 , &U _POT1SB -> &U _POT1SA `*Cuc ]
-"68
-[; ;ADC.c: 68:         strcpy(PUNTO1,".");
-[e ( _strcpy (2 , &U _PUNTO1 :s 2C ]
-"69
-[; ;ADC.c: 69:         strcat(PUNTO1,POT1SB);
-[e ( _strcat (2 , &U _PUNTO1 -> &U _POT1SB `*Cuc ]
-"70
-[; ;ADC.c: 70:         strcat(POT1SC,PUNTO1);
-[e ( _strcat (2 , &U _POT1SC -> &U _PUNTO1 `*Cuc ]
-"72
-[; ;ADC.c: 72:         _delay((unsigned long)((600)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 600 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
-"73
-[; ;ADC.c: 73:         ADCON0bits.CHS0 = 1;
-[e = . . _ADCON0bits 1 2 -> -> 1 `i `uc ]
-"74
-[; ;ADC.c: 74:         ADCON0bits.CHS1 = 1;
-[e = . . _ADCON0bits 1 3 -> -> 1 `i `uc ]
-"75
-[; ;ADC.c: 75:         ADCON0bits.CHS2 = 0;
-[e = . . _ADCON0bits 1 4 -> -> 0 `i `uc ]
-"76
-[; ;ADC.c: 76:         ADCON0bits.CHS3 = 0;
-[e = . . _ADCON0bits 1 5 -> -> 0 `i `uc ]
-"77
-[; ;ADC.c: 77:         ADCON0bits.ADON = 1;
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"78
-[; ;ADC.c: 78:         ADCON0bits.GO = 1;
-[e = . . _ADCON0bits 1 1 -> -> 1 `i `uc ]
-"79
-[; ;ADC.c: 79:         PIR1bits.ADIF = 0;
-[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-"80
-[; ;ADC.c: 80:         adc2 = ADRESH;
-[e = _adc2 _ADRESH ]
-"81
-[; ;ADC.c: 81:         voltaje3 = adc2*5.0/255.0;
-[e = _voltaje3 -> / * -> -> _adc2 `i `d .5.0 .255.0 `f ]
-"82
-[; ;ADC.c: 82:         V2 = (voltaje3)*100;
-[e = _V2 -> * _voltaje3 -> -> 100 `i `f `i ]
-"83
-[; ;ADC.c: 83:         POT2A = V2%10;
-[e = _POT2A % _V2 -> 10 `i ]
-"84
-[; ;ADC.c: 84:         itoa(POT2SA,POT2A,10);
-[e ( _itoa (3 , , &U _POT2SA _POT2A -> 10 `i ]
-"85
-[; ;ADC.c: 85:         POT2B = (V2/10)%10;
-[e = _POT2B % / _V2 -> 10 `i -> 10 `i ]
-"86
-[; ;ADC.c: 86:         itoa(POT2SB,POT2B,10);
-[e ( _itoa (3 , , &U _POT2SB _POT2B -> 10 `i ]
-"87
-[; ;ADC.c: 87:         POT2C = (V2/100)%10;
-[e = _POT2C % / _V2 -> 100 `i -> 10 `i ]
-"88
-[; ;ADC.c: 88:         itoa(POT2SC,POT2C,10);
-[e ( _itoa (3 , , &U _POT2SC _POT2C -> 10 `i ]
-"89
-[; ;ADC.c: 89:         strcat(POT2SB,POT2SA);
-[e ( _strcat (2 , &U _POT2SB -> &U _POT2SA `*Cuc ]
-"90
-[; ;ADC.c: 90:         strcpy(PUNTO2,".");
-[e ( _strcpy (2 , &U _PUNTO2 :s 3C ]
-"91
-[; ;ADC.c: 91:         strcat(PUNTO2,POT2SB);
-[e ( _strcat (2 , &U _PUNTO2 -> &U _POT2SB `*Cuc ]
-"92
-[; ;ADC.c: 92:         strcat(POT2SC,PUNTO2);
-[e ( _strcat (2 , &U _POT2SC -> &U _PUNTO2 `*Cuc ]
-"94
-[; ;ADC.c: 94:         lcd_cmd(0xC0);
-[e ( _lcd_cmd (1 -> -> 192 `i `uc ]
-"95
-[; ;ADC.c: 95:         lcd_msg(POT1SC);
-[e ( _lcd_msg (1 -> &U _POT1SC `*uc ]
-"96
-[; ;ADC.c: 96:         lcd_msg(" ");
-[e ( _lcd_msg (1 :s 4C ]
-"97
-[; ;ADC.c: 97:         lcd_msg(POT2SC);
-[e ( _lcd_msg (1 -> &U _POT2SC `*uc ]
-"98
-[; ;ADC.c: 98:         lcd_msg(" ");
-[e ( _lcd_msg (1 :s 5C ]
-"99
-[; ;ADC.c: 99:         lcd_msg(DESTINATION);
-[e ( _lcd_msg (1 -> &U _DESTINATION `*uc ]
-"101
-[; ;ADC.c: 101:     }
-}
-[e :U 148 ]
-[e $U 149  ]
-[e :U 150 ]
-"102
-[; ;ADC.c: 102:     }
-}
 [e :U 145 ]
-[e $U 146  ]
+[e $ ! _TRMT 146  ]
 [e :U 147 ]
-"103
-[; ;ADC.c: 103:     return;
-[e $UE 144  ]
-"104
-[; ;ADC.c: 104: }
+"29
+[; ;UART.c: 29:   TXREG = contador;
+[e = _TXREG _contador ]
+"30
+[; ;UART.c: 30: }
 [e :UE 144 ]
 }
-[a 1C 83 49 32 32 32 32 83 50 32 32 32 99 111 110 116 46 0 ]
-[a 2C 46 0 ]
-[a 3C 46 0 ]
-[a 4C 32 0 ]
-[a 5C 32 0 ]
+"32
+[; ;UART.c: 32: uint8_t UART_TX_Empty(){
+[v _UART_TX_Empty `(uc ~T0 @X0 1 ef ]
+{
+[e :U _UART_TX_Empty ]
+[f ]
+"34
+[; ;UART.c: 34:   return TRMT;
+[e ) -> _TRMT `uc ]
+[e $UE 148  ]
+"35
+[; ;UART.c: 35: }
+[e :UE 148 ]
+}
+"36
+[; ;UART.c: 36: uint8_t UART_READ(){
+[v _UART_READ `(uc ~T0 @X0 1 ef ]
+{
+[e :U _UART_READ ]
+[f ]
+"37
+[; ;UART.c: 37:     while(!RCIF);
+[e $U 150  ]
+[e :U 151 ]
+[e :U 150 ]
+[e $ ! _RCIF 151  ]
+[e :U 152 ]
+"38
+[; ;UART.c: 38:     return RCREG;
+[e ) _RCREG ]
+[e $UE 149  ]
+"39
+[; ;UART.c: 39: }
+[e :UE 149 ]
+}
